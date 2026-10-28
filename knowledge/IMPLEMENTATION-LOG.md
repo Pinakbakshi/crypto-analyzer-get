@@ -36,3 +36,14 @@ Revert the commits on feat/forgepilot-signal-analysis or close the feature branc
 
 ### Next step
 Add endpoint-level tests with mocked Bitget responses and authentication, then build a chronological walk-forward evaluation harness before considering ML forecasts. Review the Bitget v2-to-v3 contract separately before changing provider paths.
+
+## 2026-10-29 — Post-merge verification and TracePlay integration
+
+- Merged PR #1 into `main`: https://github.com/Pinakbakshi/crypto-analyzer-get/pull/1
+- Merge commit: `47d883e399728cfa1cd589ccf65ac5b7f746c2c0`.
+- Added `tests/test_analysis_route.py`: verifies missing-key rejection and the authenticated route response against mocked candles, without depending on the live exchange.
+- Final pre-merge GitHub Actions run passed **7 tests**: two route tests and five signal-engine tests. Run: https://github.com/Pinakbakshi/crypto-analyzer-get/actions/runs/40779722810
+- TracePlay gained an authenticated REST contract-probe CLI in its own merged PR: https://github.com/Pinakbakshi/traceplay/pull/1. The TracePlay CI run passed **6 tests**, including credential redaction: https://github.com/Pinakbakshi/traceplay/actions/runs/40779976466
+- Live TracePlay-to-deployment testing remains pending because no verified deployment URL and usable runtime API key were supplied to this run. No secrets were requested or committed.
+- No live Bitget call, historical backtest, trade execution, or deployment was performed. Keep predictive performance claims explicitly unverified.
+
