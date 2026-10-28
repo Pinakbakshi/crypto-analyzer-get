@@ -1,5 +1,8 @@
 # Crypto Analyzer GPT
 
+> **Project status (2026-10-29):** The explainable technical-signal endpoint and its documentation are merged into `main`. GitHub Actions passed **7 tests** covering the signal engine and mocked API route. Live Bitget connectivity, production deployment, and predictive performance have **not** been validated.
+
+
 An API for crypto-market data, technical context, and alert workflows. The current implementation fetches OHLCV candles from Bitget and exposes market endpoints through FastAPI. This branch adds a transparent, deterministic technical-signal endpoint so the reasoning behind a directional bias is inspectable.
 
 > **Important:** the technical score is a rule-based heuristic, not a trained machine-learning forecast, a probability of profit, or financial advice. It does not execute trades.
