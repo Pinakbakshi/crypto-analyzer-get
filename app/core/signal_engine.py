@@ -127,8 +127,10 @@ def analyze_candles(frame: pd.DataFrame) -> dict[str, Any]:
     magnitude = abs(score)
     strength = "strong" if magnitude >= 65 else "moderate" if magnitude >= 35 else "weak"
 
-    recent_high = _last_finite(high.iloc[-21:-1]) if len(high) >= 21 else None
-    recent_low = _last_finite(low.iloc[-21:-1]) if len(low) >= 21 else None
+    prior_highs = high.iloc[-21:-1] if len(high) >= 21 else pd.Series(dtype=float)
+    prior_lows = low.iloc[-21:-1] if len(low) >= 21 else pd.Series(dtype=float)
+    recent_high = float(prior_highs.max()) if not prior_highs.empty else None
+    recent_low = float(prior_lows.min()) if not prior_lows.empty else None
     volume_ratio = None
     if "vol_base" in data.columns:
         volume = pd.to_numeric(data["vol_base"], errors="coerce")
